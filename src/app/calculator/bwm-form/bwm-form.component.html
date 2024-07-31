@@ -1,0 +1,53 @@
+<div class="table-responsive">
+  <table class="table table-bordered table-striped">
+    <thead>
+      <tr>
+        <th></th>
+        @for (criteria of criterias; track criteria) {
+        <th>{{ criteria }}</th>
+        }
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>Beneficial</td>
+        @for (criteria of criterias; track criteria) {
+        <th>
+          <input
+            class="form-check-input"
+            type="checkbox"
+            [(ngModel)]="criterias_config[criteria].beneficial"
+            (ngModelChange)="onUpdate()"
+          />
+        </th>
+        }
+      </tr>
+      <tr>
+        <td>Compared to best ({{ best_criteria }})</td>
+        @for (criteria of criterias; track criteria) {
+        <th>
+          <input
+            class="form-control"
+            type="number"
+            [(ngModel)]="criterias_config[criteria].compared2best"
+            (ngModelChange)="onUpdate()"
+          />
+        </th>
+        }
+      </tr>
+      <tr>
+        <td>Compared to worst ({{ worst_criteria }})</td>
+        @for (criteria of criterias; track criteria) {
+        <th>
+          <input
+            class="form-control"
+            type="number"
+            [(ngModel)]="criterias_config[criteria].compared2worst"
+            (ngModelChange)="onUpdate()"
+          />
+        </th>
+        }
+      </tr>
+    </tbody>
+  </table>
+</div>

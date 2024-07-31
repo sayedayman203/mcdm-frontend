@@ -1,0 +1,95 @@
+<div class="modal-header">
+  <h4 class="modal-title">Neutrosophic Number</h4>
+  <button
+    type="button"
+    class="btn-close"
+    aria-label="Close"
+    (click)="activeModal.dismiss('Cross click')"
+  ></button>
+</div>
+<div class="modal-body">
+  <div class="row g-3">
+    <div class="col-4">
+      <label for="low" class="form-label">Low</label>
+      <input
+        type="number"
+        class="form-control"
+        id="low"
+        [(ngModel)]="neutrosophic_number.low"
+        (change)="validate_range('low')"
+        step="0.1"
+      />
+    </div>
+    <div class="col-4">
+      <label for="mid" class="form-label">Mid</label>
+      <input
+        type="number"
+        class="form-control"
+        id="mid"
+        [(ngModel)]="neutrosophic_number.mid"
+        (change)="validate_range('mid')"
+        step="0.1"
+      />
+    </div>
+    <div class="col-4">
+      <label for="high" class="form-label">High</label>
+      <input
+        type="number"
+        class="form-control"
+        id="high"
+        [(ngModel)]="neutrosophic_number.high"
+        (change)="validate_range('high')"
+        step="0.1"
+      />
+    </div>
+    <div class="col-4">
+      <label for="truth" class="form-label">Truth</label>
+      <input
+        type="number"
+        class="form-control"
+        id="truth"
+        [(ngModel)]="neutrosophic_number.T"
+        (change)="validate_range('T')"
+        step="0.1"
+      />
+    </div>
+    <div class="col-4">
+      <label for="indeterminacy" class="form-label">Indeterminacy</label>
+      <input
+        type="number"
+        class="form-control"
+        id="indeterminacy"
+        [(ngModel)]="neutrosophic_number.I"
+        (change)="validate_range('I')"
+        step="0.1"
+      />
+    </div>
+    <div class="col-4">
+      <label for="falsity" class="form-label">Falsity</label>
+      <input
+        type="number"
+        class="form-control"
+        id="falsity"
+        [(ngModel)]="neutrosophic_number.F"
+        (change)="validate_range('F')"
+        step="0.1"
+      />
+    </div>
+  </div>
+</div>
+<div class="modal-footer">
+  <button
+    type="button"
+    class="btn btn-outline-secondary"
+    (click)="activeModal.dismiss()"
+  >
+    Close
+  </button>
+  <button
+    type="button"
+    class="btn btn-success"
+    (click)="activeModal.close(neutrosophic_number)"
+  >
+    save
+  </button>
+</div>

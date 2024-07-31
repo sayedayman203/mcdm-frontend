@@ -1,0 +1,16 @@
+@for(result of results | keyvalue; track result.key) {
+<div class="row">
+  <div class="col-3">
+    <p>{{ result.key }}</p>
+  </div>
+  <div class="col-9">
+    <ngb-progressbar type="danger" [value]="result.value * 100">{{
+      result.value
+    }}</ngb-progressbar>
+  </div>
+</div>
+}
+
+<p class="text-center border">
+  @for(key of order; track key) { {{ key }} @if(!$last) { &lt; } }
+</p>

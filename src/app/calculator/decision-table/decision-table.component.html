@@ -1,0 +1,38 @@
+@for(decision of decisions; track $index; let d_index = $index) {
+<div>
+  <p>Decision {{ $index + 1 }}</p>
+  <div class="table-responsive">
+    <table class="table table-hover">
+      <thead class="table-light">
+        <tr>
+          <th></th>
+          @for(criteria of criterias; track criteria) {
+          <th>{{ criteria }}</th>
+          }
+        </tr>
+      </thead>
+      <tbody>
+        @for(alternate of alternates; track alternate) {
+        <tr>
+          <td>{{ alternate }}</td>
+          @for(criteria of criterias; track criteria) {
+          <td (click)="openEdit(d_index, alternate, criteria)">
+            (({{ decision[alternate][criteria].low }},
+            {{ decision[alternate][criteria].mid }},
+            {{ decision[alternate][criteria].high }}),
+            {{ decision[alternate][criteria].T }},
+            {{ decision[alternate][criteria].I }},
+            {{ decision[alternate][criteria].F }})
+          </td>
+          }
+        </tr>
+        }
+      </tbody>
+    </table>
+  </div>
+  @if (!$last) {
+  <hr />
+  }
+</div>
+
+}

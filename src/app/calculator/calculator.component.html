@@ -1,0 +1,102 @@
+<div class="text-center mb-3">
+  <button class="btn btn-primary" (click)="lead_example()">Load Example</button>
+</div>
+<div ngbAccordion>
+  <div ngbAccordionItem>
+    <h2 ngbAccordionHeader>
+      <button ngbAccordionButton>Define Criterias</button>
+    </h2>
+    <div ngbAccordionCollapse>
+      <div ngbAccordionBody>
+        <app-string-list-input
+          [(values)]="criterias"
+          (valuesChange)="onCriteriasChanges()"
+        ></app-string-list-input>
+        <div class="row mt-3">
+          <div class="col-6">
+            <label for="best-criteria" class="form-label">Select Best</label>
+            <select
+              class="form-select"
+              id="best-criteria"
+              [(ngModel)]="criterias_config.best_criteria"
+            >
+              @for(criteria of criterias; track criteria) {
+              <option [value]="criteria">{{ criteria }}</option>
+              }
+            </select>
+          </div>
+          <div class="col-6">
+            <label for="best-criteria" class="form-label">Select Worst</label>
+            <select
+              class="form-select"
+              id="best-criteria"
+              [(ngModel)]="criterias_config.worst_criteria"
+            >
+              @for(criteria of criterias; track criteria) {
+              <option [value]="criteria">{{ criteria }}</option>
+              }
+            </select>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div ngbAccordionItem>
+    <h2 ngbAccordionHeader>
+      <button ngbAccordionButton>Define Alternates</button>
+    </h2>
+    <div ngbAccordionCollapse>
+      <div ngbAccordionBody>
+        <app-string-list-input [(values)]="alternates"></app-string-list-input>
+      </div>
+    </div>
+  </div>
+
+  <div ngbAccordionItem>
+    <h2 ngbAccordionHeader>
+      <button ngbAccordionButton>Define BWM Inputs</button>
+    </h2>
+    <div ngbAccordionCollapse>
+      <div ngbAccordionBody>
+        <app-bwm-form
+          [criterias]="criterias"
+          [(criterias_config)]="criterias_config.values"
+          [best_criteria]="criterias_config.best_criteria"
+          [worst_criteria]="criterias_config.worst_criteria"
+        ></app-bwm-form>
+      </div>
+    </div>
+  </div>
+
+  <div ngbAccordionItem>
+    <h2 ngbAccordionHeader>
+      <button ngbAccordionButton>
+        Define Decisions Table
+        <button
+          class="btn btn-sm btn-success ms-3"
+          (click)="$event.stopPropagation(); decisions_table.add_new()"
+        >
+          <fa-icon [icon]="faAdd"></fa-icon>
+        </button>
+      </button>
+    </h2>
+    <div ngbAccordionCollapse>
+      <div ngbAccordionBody>
+        <app-decision-table
+          [criterias]="criterias"
+          [alternates]="alternates"
+          [(decisions)]="decisions"
+          #decisions_table
+        ></app-decision-table>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="text-end my-3">
+  <button class="btn btn-success" (click)="solve()">Solve</button>
+</div>
+
+@if(results) {
+<app-results [results]="results"></app-results>
+}
